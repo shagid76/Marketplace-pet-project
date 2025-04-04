@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      MONGODB_INIT_ROOT_PASSWORD:
+    volumes:
+      - mongodb_data:/data
+
+volumes:
+  mongodb_data: { }
