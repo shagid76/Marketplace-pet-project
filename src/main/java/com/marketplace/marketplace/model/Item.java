@@ -20,7 +20,6 @@ public class Item {
     private String id;
     private String name;
     private float value;
-    private boolean isFree;
     private LocalDate listedDate;
     private boolean isService;
     private boolean isSolded;

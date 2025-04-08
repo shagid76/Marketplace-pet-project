@@ -21,7 +21,6 @@ public class CreateItemRequest {
     @NotBlank(message = "Value can't be empty!")
     @DecimalMin(value = "0.01", message = "Value must be greater than or equal to 0.01")
     private float value;
-    private boolean isFree;
     private LocalDate listedDate;
     private boolean isService;
     @NotBlank(message = "Category can't be empty!")

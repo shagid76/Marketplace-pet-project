@@ -26,6 +26,5 @@ public class User {
     private String password;
     private LocalDate accountCreationDate;
     private String address;
-    private List<Item> items;
     private Role role;
 }
