@@ -1,11 +1,13 @@
 package com.marketplace.marketplace.controller;
 
+import com.marketplace.marketplace.model.CreateUserRequest;
+import com.marketplace.marketplace.model.UpdateUserRequest;
 import com.marketplace.marketplace.model.User;
 import com.marketplace.marketplace.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.atmosphere.config.service.Post;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +24,16 @@ public class UserController {
     @GetMapping("/users/{id}")
     public User findById(@PathVariable("id") String id){
         return userService.findById(id);
+    }
+
+    @PutMapping("/users/put")
+    public User putUser(@RequestBody @Valid CreateUserRequest createUserRequest){
+        return userService.createUser(createUserRequest);
+    }
+
+    @PatchMapping("/users/update")
+    public User updateUser(@RequestBody @Valid UpdateUserRequest updateUserRequest,
+                           @RequestBody String id){
+        return userService.updateUser(updateUserRequest, id);
     }
 }

@@ -19,7 +19,7 @@ public class Item {
     @Id
     private String id;
     private String name;
-    private float value;
+    private float price;
     private LocalDate listedDate;
     private boolean isService;
     private boolean isSolded;
