@@ -1,4 +1,4 @@
-package com.marketplace.marketplace.model;
+package com.marketplace.marketplace.model.Item;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Builder
 @Data
-@Document
+@Document(collection = "items")
 public class Item {
     @Id
     private String id;

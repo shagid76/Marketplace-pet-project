@@ -1,4 +1,4 @@
-package com.marketplace.marketplace.model;
+package com.marketplace.marketplace.model.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,13 +9,12 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
-@Document
+@Document(collection = "users")
 public class User {
     @Id
     private String id;

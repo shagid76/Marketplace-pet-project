@@ -1,9 +1,9 @@
 package com.marketplace.marketplace.service;
 
-import com.marketplace.marketplace.model.CreateItemRequest;
-import com.marketplace.marketplace.model.Item;
-import com.marketplace.marketplace.model.ItemCategory;
-import com.marketplace.marketplace.model.UpdateItemRequest;
+import com.marketplace.marketplace.model.Item.CreateItemRequest;
+import com.marketplace.marketplace.model.Item.Item;
+import com.marketplace.marketplace.model.Item.ItemCategory;
+import com.marketplace.marketplace.model.Item.UpdateItemRequest;
 import com.marketplace.marketplace.repository.ItemRepository;
 import com.vaadin.flow.router.NotFoundException;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.marketplace.marketplace.model;
+package com.marketplace.marketplace.model.User;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

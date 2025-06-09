@@ -1,6 +1,6 @@
 package com.marketplace.marketplace.security;
 
-import com.marketplace.marketplace.model.User;
+import com.marketplace.marketplace.model.User.User;
 import com.marketplace.marketplace.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

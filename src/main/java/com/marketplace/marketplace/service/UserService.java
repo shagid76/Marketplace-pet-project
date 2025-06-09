@@ -1,9 +1,9 @@
 package com.marketplace.marketplace.service;
 
-import com.marketplace.marketplace.model.CreateUserRequest;
-import com.marketplace.marketplace.model.Role;
-import com.marketplace.marketplace.model.UpdateUserRequest;
-import com.marketplace.marketplace.model.User;
+import com.marketplace.marketplace.model.User.CreateUserRequest;
+import com.marketplace.marketplace.model.User.Role;
+import com.marketplace.marketplace.model.User.UpdateUserRequest;
+import com.marketplace.marketplace.model.User.User;
 import com.marketplace.marketplace.repository.UserRepository;
 import com.vaadin.flow.router.NotFoundException;
 import lombok.RequiredArgsConstructor;

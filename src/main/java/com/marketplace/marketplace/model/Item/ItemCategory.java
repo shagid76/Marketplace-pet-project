@@ -1,4 +1,4 @@
-package com.marketplace.marketplace.model;
+package com.marketplace.marketplace.model.Item;
 
 public enum ItemCategory {
     ANTIQUES,
