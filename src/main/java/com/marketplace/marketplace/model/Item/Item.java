@@ -23,5 +23,6 @@ public class Item {
     private LocalDate listedDate;
     private boolean isService;
     private boolean isSolded;
+    private boolean isBanned;
     private ItemCategory category;
 }

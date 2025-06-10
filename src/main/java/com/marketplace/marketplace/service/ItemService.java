@@ -31,13 +31,15 @@ public class ItemService {
     }
 
     public Item createItem(CreateItemRequest createItemRequest){
-        Item item = new Item();
-        item.setName(createItemRequest.getName());
-        item.setPrice(createItemRequest.getPrice());
-        item.setListedDate(LocalDate.now());
-        item.setService(createItemRequest.isService());
-        item.setCategory(createItemRequest.getCategory());
-        item.setSolded(false);
+        Item item = Item.builder()
+        .name(createItemRequest.getName())
+        .price(createItemRequest.getPrice())
+        .listedDate(LocalDate.now())
+        .isService(createItemRequest.isService())
+        .category(createItemRequest.getCategory())
+        .isSolded(false)
+        .build();
+
         return itemRepository.save(item);
     }
 
@@ -54,5 +56,11 @@ public class ItemService {
         item.setCategory(updateItemRequest.getCategory());
         item.setService(updateItemRequest.isService());
         return itemRepository.save(item);
+    }
+
+    public Item banItem(String id){
+        Item item = findById(id);
+        item.setBanned(true);
+       return itemRepository.save(item);
     }
 }

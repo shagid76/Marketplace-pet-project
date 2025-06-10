@@ -48,4 +48,14 @@ public class ItemController {
         return itemService.updateItem(updateItemRequest, id);
     }
 
+    @PatchMapping("/update")
+    public Item addItemTo(@RequestBody @Valid UpdateItemRequest updateItemRequest,
+                           @RequestBody String id){
+        return itemService.updateItem(updateItemRequest, id);
+    }
+
+    @PatchMapping("/ban")
+    public Item banItem(@RequestBody String id){
+        return itemService.banItem(id);
+    }
 }

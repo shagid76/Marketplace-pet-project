@@ -1,5 +1,6 @@
 package com.marketplace.marketplace.model.User;
 
+import com.marketplace.marketplace.model.Item.Item;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,6 +10,10 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,5 +30,11 @@ public class User {
     private String password;
     private LocalDate accountCreationDate;
     private String address;
-    private Role role;
+    private Set<Role> role = new HashSet<>();
+    private List<Double> rating;
+    private List<Item> items;
+    private List<Item> favouriteItems;
+    private List<Item> basket;
+    private LocalDateTime bannedUntil;
+    private boolean isBanned;
 }
