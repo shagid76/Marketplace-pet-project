@@ -1,0 +1,175 @@
+@use '../../styles/abstracts/mixins' as *;
+
+.chat-shell {
+    display: grid;
+    grid-template-columns: 1fr;
+    height: calc(100vh - #{$header-height-mobile});
+    background: $bg-surface;
+
+    @include md-up {
+        grid-template-columns: 320px minmax(0, 1fr);
+        height: calc(100vh - #{$header-height-desktop});
+    }
+
+    &__sidebar {
+        border-right: 1px solid $border-default;
+        overflow-y: auto;
+        background: $color-neutral-50;
+        @include scrollbar-thin;
+
+        @include md-down {
+            display: block;
+            .chat-shell--has-chat & { display: none; }
+        }
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        background: $bg-surface;
+
+        @include md-down {
+            display: none;
+            .chat-shell--has-chat & { display: flex; }
+        }
+    }
+
+    &__placeholder {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: $space-3;
+        color: $text-secondary;
+        text-align: center;
+        padding: $space-8;
+
+        h3 { color: $text-primary; }
+    }
+}
+
+.chat {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 0;
+
+    &__header {
+        padding: $space-3 $space-4;
+        border-bottom: 1px solid $border-default;
+        background: $bg-surface;
+        display: flex;
+        align-items: center;
+        gap: $space-3;
+        position: sticky;
+        top: 0;
+        z-index: $z-raised;
+
+        @include md-up { padding: $space-4 $space-5; }
+
+        h1 {
+            font-size: $font-size-base;
+            font-weight: $font-weight-semibold;
+            min-width: 0;
+            @include clamp-lines(1);
+            @include md-up { font-size: $font-size-md; }
+        }
+
+        &-avatar {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: $radius-full;
+            background: $gradient-brand;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: $color-neutral-0;
+            font-weight: $font-weight-bold;
+            font-size: $font-size-sm;
+            @include md-up { width: 40px; height: 40px; }
+        }
+
+        &-profile {
+            display: flex;
+            align-items: center;
+            gap: $space-3;
+            background: none;
+            border: none;
+            padding: $space-1 $space-2;
+            border-radius: $radius-md;
+            cursor: pointer;
+            min-width: 0;
+            flex: 1;
+            text-align: left;
+            transition: background $transition-fast;
+
+            &:hover:not(:disabled) { background: $color-brand-50; }
+            &:disabled { cursor: default; }
+        }
+
+        &-back {
+            flex-shrink: 0;
+            width: 36px;
+            height: 36px;
+            border-radius: $radius-full;
+            background: $color-neutral-100;
+            color: $text-primary;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: background $transition-fast;
+            &:hover { background: $color-neutral-200; }
+            @include md-up { display: none; }
+        }
+    }
+
+    &__messages {
+        flex: 1;
+        overflow-y: auto;
+        padding: $space-4;
+        display: flex;
+        flex-direction: column;
+        gap: $space-2;
+        background: $color-neutral-50;
+        @include scrollbar-thin;
+        @include md-up { padding: $space-5; }
+    }
+
+    &__empty {
+        margin: auto;
+        color: $text-muted;
+        font-size: $font-size-sm;
+    }
+
+    &__composer {
+        display: flex;
+        gap: $space-2;
+        padding: $space-3 $space-4;
+        border-top: 1px solid $border-default;
+        background: $bg-surface;
+        @include md-up { padding: $space-4 $space-5; }
+
+        input {
+            flex: 1;
+            min-width: 0;
+            padding: $space-3 $space-4;
+            border: 1px solid $border-default;
+            border-radius: $radius-full;
+            font-size: $font-size-sm;
+            background: $color-neutral-50;
+            transition: border-color $transition-fast, box-shadow $transition-fast;
+
+            &:focus {
+                outline: none;
+                border-color: $border-focus;
+                box-shadow: $shadow-glow;
+                background: $bg-surface;
+            }
+        }
+
+        .btn { flex-shrink: 0; }
+    }
+}

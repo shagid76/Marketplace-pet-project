@@ -1,0 +1,111 @@
+@use '../../styles/abstracts/mixins' as *;
+
+.profile-form-card {
+    background: $bg-surface;
+    border: 1px solid $border-default;
+    border-radius: $radius-xl;
+    box-shadow: $shadow-md;
+    padding: $space-6 $space-5;
+    width: 100%;
+    max-width: 480px;
+    margin-inline: auto;
+
+    @include sm-up { padding: $space-7 $space-6; }
+    @include md-up { padding: $space-8; }
+
+    &__error {
+        background: $color-danger-100;
+        color: $color-danger-700;
+        border: 1px solid $color-danger-500;
+        border-radius: $radius-md;
+        padding: $space-3 $space-4;
+        font-size: $font-size-sm;
+        margin-bottom: $space-4;
+    }
+
+    &__title {
+        font-size: $font-size-xl;
+        font-weight: $font-weight-bold;
+        letter-spacing: $letter-spacing-tight;
+        margin-bottom: $space-6;
+        @include md-up { font-size: $font-size-2xl; }
+    }
+}
+
+/* ── Avatar section ── */
+.avatar-editor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-3;
+    margin-bottom: $space-6;
+    padding-bottom: $space-6;
+    border-bottom: 1px solid $border-default;
+
+    &__wrap {
+        position: relative;
+        width: 104px;
+        height: 104px;
+    }
+
+    &__img {
+        width: 104px;
+        height: 104px;
+        border-radius: $radius-full;
+        object-fit: cover;
+        border: 3px solid $bg-surface;
+        box-shadow: $shadow-md;
+        background: $color-neutral-100;
+        display: block;
+    }
+
+    /* clickable overlay to pick a new photo */
+    &__pick {
+        position: absolute;
+        inset: 0;
+        border-radius: $radius-full;
+        background: rgba(15, 23, 42, 0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background $transition-fast;
+        cursor: pointer;
+
+        span {
+            font-size: $font-size-xs;
+            font-weight: $font-weight-semibold;
+            color: $color-neutral-0;
+            opacity: 0;
+            transition: opacity $transition-fast;
+            text-align: center;
+            line-height: 1.3;
+            padding: $space-2;
+        }
+
+        &:hover {
+            background: rgba(15, 23, 42, 0.52);
+            span { opacity: 1; }
+        }
+
+        input[type='file'] {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        gap: $space-2;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    &__hint {
+        font-size: $font-size-xs;
+        color: $text-muted;
+        text-align: center;
+    }
+}

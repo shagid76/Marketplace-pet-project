@@ -1,0 +1,122 @@
+@use '../abstracts/mixins' as *;
+
+.btn {
+    --btn-bg: #{$color-brand-600};
+    --btn-bg-hover: #{$color-brand-700};
+    --btn-color: #{$text-on-brand};
+    --btn-border: transparent;
+    --btn-shadow: #{$shadow-sm};
+    --btn-pad-y: #{$space-3};
+    --btn-pad-x: #{$space-4};
+    --btn-font: #{$font-size-sm};
+    --btn-radius: #{$radius-md};
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: $space-2;
+    padding: var(--btn-pad-y) var(--btn-pad-x);
+    font-family: inherit;
+    font-size: var(--btn-font);
+    font-weight: $font-weight-semibold;
+    line-height: 1.2;
+    color: var(--btn-color);
+    background: var(--btn-bg);
+    border: 1px solid var(--btn-border);
+    border-radius: var(--btn-radius);
+    cursor: pointer;
+    user-select: none;
+    text-align: center;
+    box-shadow: var(--btn-shadow);
+    transition: background $transition-fast, color $transition-fast,
+                transform $transition-fast, box-shadow $transition-fast,
+                border-color $transition-fast;
+
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    min-width: 0;
+
+    @include md-up {
+        --btn-pad-x: #{$space-5};
+        white-space: nowrap;
+    }
+
+    @include hover {
+        background: var(--btn-bg-hover);
+        transform: translateY(-1px);
+    }
+
+    &:active { transform: translateY(0); }
+    &:focus-visible { @include focus-ring; }
+
+    &:disabled,
+    &[aria-disabled='true'] {
+        opacity: 0.55;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+    }
+
+    &--sm {
+        --btn-pad-y: #{$space-2};
+        --btn-pad-x: #{$space-3};
+        --btn-font: #{$font-size-xs};
+        --btn-radius: #{$radius-sm};
+    }
+
+    &--lg {
+        --btn-pad-y: #{$space-3};
+        --btn-pad-x: #{$space-5};
+        --btn-radius: #{$radius-lg};
+
+        @include md-up {
+            --btn-pad-y: #{$space-4};
+            --btn-pad-x: #{$space-6};
+            --btn-font: #{$font-size-base};
+        }
+    }
+
+    &--block { width: 100%; }
+    &--block-mobile { @include md-down { width: 100%; } }
+
+    &--accent { --btn-bg: #{$color-accent-500}; --btn-bg-hover: #{$color-accent-600}; --btn-color: #{$color-neutral-0}; }
+    &--secondary { --btn-bg: #{$color-neutral-0}; --btn-bg-hover: #{$color-neutral-100}; --btn-color: #{$text-primary}; --btn-border: #{$border-default}; }
+    &--ghost { --btn-bg: transparent; --btn-bg-hover: #{$color-neutral-100}; --btn-color: #{$text-primary}; --btn-border: transparent; --btn-shadow: none; }
+    &--danger { --btn-bg: #{$color-danger-500}; --btn-bg-hover: #{$color-danger-600}; --btn-color: #{$color-neutral-0}; }
+    &--success { --btn-bg: #{$color-success-500}; --btn-bg-hover: #{$color-success-700}; --btn-color: #{$color-neutral-0}; }
+    &--icon { --btn-pad-y: #{$space-2}; --btn-pad-x: #{$space-2}; width: 38px; height: 38px; border-radius: $radius-full; }
+}
+
+.btn-stack {
+    display: flex;
+    gap: $space-2;
+    flex-wrap: wrap;
+    @include md-up { gap: $space-3; }
+    > .btn { flex: 1 1 auto; min-width: 0; }
+    @include sm-down {
+        flex-direction: column;
+        > .btn { width: 100%; }
+    }
+}
+
+.btn--loading {
+    color: transparent !important;
+    pointer-events: none;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: 16px;
+        height: 16px;
+        border: 2px solid currentColor;
+        border-top-color: transparent;
+        border-radius: $radius-full;
+        animation: spin 0.7s linear infinite;
+        color: $color-neutral-0;
+    }
+}

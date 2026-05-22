@@ -1,0 +1,221 @@
+@use '../../styles/abstracts/mixins' as *;
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: $z-sticky;
+    @include glass;
+    border-bottom: 1px solid $border-default;
+    transition: box-shadow $transition-base;
+
+    &__inner {
+        @include container;
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas: "brand search actions";
+        align-items: center;
+        gap: $space-3;
+        min-height: $header-height-mobile;
+        padding-block: $space-2;
+
+        @include lg-up {
+            min-height: $header-height-desktop;
+            gap: $space-6;
+            padding-block: 0;
+        }
+
+        @include md-down {
+            grid-template-columns: auto 1fr;
+            grid-template-areas:
+                "brand actions"
+                "search search";
+            gap: $space-2;
+            row-gap: $space-3;
+            padding-block: $space-3;
+        }
+    }
+
+    &__brand {
+        grid-area: brand;
+        display: flex;
+        align-items: center;
+        gap: $space-2;
+        cursor: pointer;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-md;
+        letter-spacing: $letter-spacing-tight;
+
+        @include lg-up { font-size: $font-size-lg; }
+
+        img {
+            width: 30px;
+            height: 30px;
+            border-radius: $radius-sm;
+            @include lg-up { width: 32px; height: 32px; }
+        }
+
+        &-text {
+            background: $gradient-brand;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            @include xs-down { display: none; }
+        }
+    }
+
+    &__search {
+        grid-area: search;
+        display: flex;
+        align-items: stretch;
+        background: $bg-surface;
+        border: 1px solid $border-default;
+        border-radius: $radius-full;
+        padding: 4px;
+        transition: border-color $transition-fast, box-shadow $transition-fast;
+        min-width: 0;
+
+        &:focus-within {
+            border-color: $border-focus;
+            box-shadow: $shadow-glow;
+        }
+
+        input[type='text'] {
+            flex: 1;
+            min-width: 0;
+            border: 0;
+            background: transparent;
+            padding: $space-2 $space-4;
+            font-size: $font-size-sm;
+            outline: none;
+            color: $text-primary;
+
+            &::placeholder { color: $text-muted; }
+        }
+
+        select, input[type='number'] {
+            border: 0;
+            background: transparent;
+            font-size: $font-size-sm;
+            padding: $space-2 $space-3;
+            color: $text-primary;
+            outline: none;
+            border-left: 1px solid $border-default;
+            min-width: 0;
+
+            @include lg-down { display: none; }
+        }
+
+        select {
+            appearance: none;
+            padding-right: $space-6;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2364748B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right $space-2 center;
+        }
+
+        input[type='number'] {
+            width: 90px;
+            -moz-appearance: textfield;
+            &::-webkit-outer-spin-button, &::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+        }
+
+        button {
+            background: $gradient-brand;
+            color: $color-neutral-0;
+            border-radius: $radius-full;
+            padding: $space-2 $space-5;
+            font-size: $font-size-sm;
+            font-weight: $font-weight-semibold;
+            transition: filter $transition-fast, transform $transition-fast;
+            white-space: nowrap;
+
+            &:hover { filter: brightness(1.05); transform: translateY(-1px); }
+            &:active { transform: translateY(0); }
+            @include xs-down { padding: $space-2 $space-3; }
+        }
+    }
+
+    &__actions {
+        grid-area: actions;
+        display: flex;
+        align-items: center;
+        gap: $space-1;
+        justify-content: flex-end;
+
+        @include lg-up { gap: $space-2; }
+
+        button {
+            position: relative;
+            padding: $space-2 $space-3;
+            font-size: $font-size-sm;
+            font-weight: $font-weight-medium;
+            color: $text-primary;
+            background: transparent;
+            border-radius: $radius-md;
+            transition: background $transition-fast, color $transition-fast;
+            white-space: nowrap;
+
+            @include lg-up { padding: $space-2 $space-4; }
+
+            &:hover {
+                background: $color-neutral-100;
+                color: $color-brand-700;
+            }
+        }
+
+        .header-admin-btn {
+            background: $color-warning-100;
+            color: $color-warning-700;
+            border: 1px solid rgba($color-warning-500, 0.4);
+            font-weight: $font-weight-semibold;
+
+            &:hover {
+                background: $color-warning-100;
+                border-color: $color-warning-500;
+                filter: brightness(0.95);
+            }
+        }
+
+        .header-cta {
+            background: $gradient-brand;
+            color: $color-neutral-0;
+            box-shadow: $shadow-sm;
+
+            &:hover {
+                background: $gradient-brand;
+                color: $color-neutral-0;
+                filter: brightness(1.05);
+            }
+        }
+
+        .cart-badge {
+            position: relative;
+            padding-right: $space-6;
+
+            &__count {
+                position: absolute;
+                top: 2px;
+                right: 4px;
+                min-width: 18px;
+                height: 18px;
+                padding: 0 5px;
+                font-size: 10px;
+                font-weight: $font-weight-bold;
+                color: $color-neutral-0;
+                background: $color-accent-500;
+                border-radius: $radius-full;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                line-height: 1;
+            }
+        }
+
+        @include xs-down {
+            button {
+                padding: $space-2;
+                font-size: $font-size-xs;
+            }
+        }
+    }
+}

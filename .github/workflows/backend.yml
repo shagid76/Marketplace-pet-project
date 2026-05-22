@@ -1,0 +1,60 @@
+name: Backend CI
+
+on:
+  push:
+    paths:
+      - "marketplace-backend/**"
+      - ".github/workflows/backend.yml"
+  pull_request:
+    paths:
+      - "marketplace-backend/**"
+      - ".github/workflows/backend.yml"
+
+defaults:
+  run:
+    working-directory: marketplace-backend
+
+jobs:
+  ci:
+    name: Test · Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: 21
+          distribution: temurin
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('marketplace-backend/**/*.gradle*', 'marketplace-backend/**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Set vm.max_map_count for Elasticsearch
+        run: sudo sysctl -w vm.max_map_count=262144
+
+      - name: Make Gradle wrapper executable
+        run: chmod +x gradlew
+
+      - name: Run tests
+        run: ./gradlew test --no-daemon
+
+      - name: Upload JaCoCo report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: marketplace-backend/build/reports/jacoco/test/html/
+          retention-days: 14
+
+      - name: Build JAR
+        run: ./gradlew bootJar -x test --no-daemon

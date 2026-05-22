@@ -1,0 +1,51 @@
+spring:
+  config:
+    import: "optional:file:./.env[.properties]"
+  data:
+    web:
+      pageable:
+        serialization-mode: via_dto
+    mongodb:
+      uri: mongodb://${DB_USERNAME}:${DB_PASSWORD}@${DB_HOST:localhost}:${DB_PORT:27017}/marketplace?authSource=admin
+      auto-index-creation: true
+    elasticsearch:
+      uris: ${URIS}
+      username: ${DB_USERNAME}
+      password: ${DB_PASSWORD}
+
+server:
+  error:
+    include-message: always
+
+jwt:
+  secret: ${JWT_SECRET}
+
+images:
+  s3Endpoint: ${S3_ENDPOINT}
+  bucketName: ${BUCKET_NAME}
+  accessKey: ${ACCESS_KEY}
+  secretKey: ${SECRET_KEY}
+  defaultAvatarPath: ${DEFAULT_AVATAR_PATH}
+
+stripe:
+  webhookSecret: ${WEBHOOK_SECRET}
+  apiKey: ${API_KEY}
+
+app:
+  frontend-origin: ${FRONTEND_ORIGIN}
+  security:
+    permit-all-urls:
+      - /api/auth/sign-in
+      - /api/auth/registration
+      - /api/auth/refresh
+      - /api/users/*
+      - /api/products/*
+      - /api/products/category/*
+      - /api/products/new-items
+      - /api/products/search
+      - /api/payments/webhook
+      - /api/reviews/average/*
+      - /swagger-ui/**
+      - /v3/api-docs/**
+      - /ws/**
+      - /static/**

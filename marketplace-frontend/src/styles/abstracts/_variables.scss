@@ -1,0 +1,158 @@
+// ===== Color tokens =====
+// Brand
+$color-brand-50:   #EEF2FF;
+$color-brand-100:  #E0E7FF;
+$color-brand-200:  #C7D2FE;
+$color-brand-300:  #A5B4FC;
+$color-brand-400:  #818CF8;
+$color-brand-500:  #6366F1;
+$color-brand-600:  #4F46E5;
+$color-brand-700:  #4338CA;
+$color-brand-800:  #3730A3;
+$color-brand-900:  #312E81;
+
+// Accent (warm — for CTAs like Buy / Add to Cart)
+$color-accent-50:  #FFF7ED;
+$color-accent-100: #FFEDD5;
+$color-accent-400: #FB923C;
+$color-accent-500: #F97316;
+$color-accent-600: #EA580C;
+$color-accent-700: #C2410C;
+
+// Neutrals (slate)
+$color-neutral-0:   #FFFFFF;
+$color-neutral-50:  #F8FAFC;
+$color-neutral-100: #F1F5F9;
+$color-neutral-200: #E2E8F0;
+$color-neutral-300: #CBD5E1;
+$color-neutral-400: #94A3B8;
+$color-neutral-500: #64748B;
+$color-neutral-600: #475569;
+$color-neutral-700: #334155;
+$color-neutral-800: #1E293B;
+$color-neutral-900: #0F172A;
+$color-neutral-950: #020617;
+
+// Semantic
+$color-success-100: #D1FAE5;
+$color-success-500: #10B981;
+$color-success-700: #047857;
+
+$color-warning-100: #FEF3C7;
+$color-warning-500: #F59E0B;
+$color-warning-700: #B45309;
+
+$color-danger-100:  #FEE2E2;
+$color-danger-500:  #EF4444;
+$color-danger-600:  #DC2626;
+$color-danger-700:  #B91C1C;
+
+// Aliased semantic tokens
+$bg-app:        $color-neutral-50;
+$bg-surface:    $color-neutral-0;
+$bg-surface-2:  $color-neutral-100;
+$bg-overlay:    rgba(15, 23, 42, 0.55);
+
+$text-primary:   $color-neutral-900;
+$text-secondary: $color-neutral-500;
+$text-muted:     $color-neutral-400;
+$text-on-brand:  $color-neutral-0;
+
+$border-default: $color-neutral-200;
+$border-strong:  $color-neutral-300;
+$border-focus:   $color-brand-500;
+
+// ===== Typography =====
+$font-family-sans:   'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-family-mono:   'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+$font-family-display: 'Inter', $font-family-sans;
+
+$font-size-xs:   0.75rem;   // 12px
+$font-size-sm:   0.875rem;  // 14px
+$font-size-base: 1rem;      // 16px
+$font-size-md:   1.125rem;  // 18px
+$font-size-lg:   1.25rem;   // 20px
+$font-size-xl:   1.5rem;    // 24px
+$font-size-2xl:  1.875rem;  // 30px
+$font-size-3xl:  2.25rem;   // 36px
+$font-size-4xl:  3rem;      // 48px
+
+$font-weight-regular:  400;
+$font-weight-medium:   500;
+$font-weight-semibold: 600;
+$font-weight-bold:     700;
+$font-weight-black:    800;
+
+$line-height-tight:   1.2;
+$line-height-snug:    1.35;
+$line-height-base:    1.55;
+$line-height-relaxed: 1.75;
+
+$letter-spacing-tight:  -0.02em;
+$letter-spacing-normal: 0;
+$letter-spacing-wide:   0.04em;
+
+// ===== Spacing scale (4px base) =====
+$space-0:  0;
+$space-1:  0.25rem;  // 4
+$space-2:  0.5rem;   // 8
+$space-3:  0.75rem;  // 12
+$space-4:  1rem;     // 16
+$space-5:  1.25rem;  // 20
+$space-6:  1.5rem;   // 24
+$space-7:  1.75rem;  // 28
+$space-8:  2rem;     // 32
+$space-10: 2.5rem;   // 40
+$space-12: 3rem;     // 48
+$space-16: 4rem;     // 64
+$space-20: 5rem;     // 80
+$space-24: 6rem;     // 96
+
+// ===== Radii =====
+$radius-xs:    4px;
+$radius-sm:    6px;
+$radius-md:    10px;
+$radius-lg:    14px;
+$radius-xl:    20px;
+$radius-2xl:   28px;
+$radius-full:  9999px;
+
+// ===== Shadows (soft, layered) =====
+$shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+$shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.08), 0 1px 2px rgba(15, 23, 42, 0.04);
+$shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08), 0 2px 4px rgba(15, 23, 42, 0.04);
+$shadow-lg: 0 12px 28px rgba(15, 23, 42, 0.10), 0 4px 8px rgba(15, 23, 42, 0.05);
+$shadow-xl: 0 24px 48px rgba(15, 23, 42, 0.14), 0 8px 16px rgba(15, 23, 42, 0.06);
+$shadow-glow: 0 0 0 4px rgba(99, 102, 241, 0.18);
+$shadow-ring-danger: 0 0 0 4px rgba(239, 68, 68, 0.18);
+
+// ===== Transitions =====
+$transition-fast:   140ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-base:   200ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-slow:   320ms cubic-bezier(0.4, 0, 0.2, 1);
+$transition-bounce: 360ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+// ===== Layout =====
+$container-max: 1280px;
+$container-pad-mobile:  $space-4;
+$container-pad-tablet:  $space-6;
+$container-pad-desktop: $space-8;
+
+$header-height-mobile:  64px;
+$header-height-desktop: 72px;
+$footer-height: 96px;
+
+// ===== Z-index scale =====
+$z-base:    0;
+$z-raised:  10;
+$z-dropdown: 100;
+$z-sticky:  200;
+$z-overlay: 900;
+$z-modal:   1000;
+$z-toast:   1100;
+
+// ===== Gradients =====
+$gradient-brand: linear-gradient(135deg, $color-brand-600 0%, $color-brand-400 100%);
+$gradient-accent: linear-gradient(135deg, $color-accent-600 0%, $color-accent-400 100%);
+$gradient-hero: radial-gradient(1200px 600px at 0% -10%, rgba(99, 102, 241, 0.18), transparent 60%),
+                radial-gradient(900px 500px at 100% 0%, rgba(249, 115, 22, 0.14), transparent 55%);

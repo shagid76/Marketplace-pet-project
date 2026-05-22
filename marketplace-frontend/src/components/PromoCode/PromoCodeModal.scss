@@ -1,0 +1,160 @@
+@use '../../styles/abstracts/mixins' as *;
+
+.promo-modal {
+    display: flex;
+    flex-direction: column;
+    gap: $space-5;
+
+    &__title {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-bold;
+        padding-right: $space-8;
+    }
+
+    &__subtitle {
+        font-size: $font-size-sm;
+        color: $text-secondary;
+        margin-top: -$space-3;
+    }
+}
+
+/* Promo input row */
+.promo-input-row {
+    display: flex;
+    gap: $space-2;
+    align-items: flex-start;
+
+    input {
+        flex: 1;
+        min-width: 0;
+        padding: $space-3 $space-4;
+        font-size: $font-size-sm;
+        font-family: $font-family-mono;
+        letter-spacing: $letter-spacing-wide;
+        text-transform: uppercase;
+        color: $text-primary;
+        background: $bg-surface;
+        border: 1px solid $border-default;
+        border-radius: $radius-md;
+        transition: border-color $transition-fast, box-shadow $transition-fast;
+
+        &::placeholder {
+            text-transform: none;
+            letter-spacing: 0;
+            font-family: $font-family-sans;
+            color: $text-muted;
+        }
+
+        &:focus {
+            outline: none;
+            border-color: $border-focus;
+            box-shadow: $shadow-glow;
+        }
+
+        &.is-valid   { border-color: $color-success-500; }
+        &.is-invalid { border-color: $color-danger-500; }
+    }
+}
+
+/* Discount badge shown after successful apply */
+.promo-discount-badge {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    background: $color-success-100;
+    border: 1px solid rgba($color-success-500, 0.35);
+    border-radius: $radius-md;
+    padding: $space-3 $space-4;
+
+    &__icon {
+        font-size: $font-size-lg;
+        flex-shrink: 0;
+    }
+
+    &__text {
+        flex: 1;
+        min-width: 0;
+
+        strong {
+            display: block;
+            font-size: $font-size-base;
+            font-weight: $font-weight-bold;
+            color: $color-success-700;
+        }
+
+        span {
+            font-size: $font-size-xs;
+            color: $color-success-700;
+            opacity: 0.8;
+        }
+    }
+
+    &__remove {
+        flex-shrink: 0;
+        font-size: $font-size-xs;
+        color: $color-success-700;
+        background: transparent;
+        text-decoration: underline;
+        cursor: pointer;
+        padding: $space-1;
+
+        &:hover { opacity: 0.7; }
+    }
+}
+
+.promo-error {
+    font-size: $font-size-xs;
+    color: $color-danger-600;
+    font-weight: $font-weight-medium;
+    margin-top: -$space-3;
+}
+
+/* Order summary inside modal */
+.promo-summary {
+    background: $color-neutral-50;
+    border: 1px solid $border-default;
+    border-radius: $radius-md;
+    padding: $space-4;
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+
+    &__row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-size: $font-size-sm;
+        color: $text-secondary;
+        gap: $space-2;
+    }
+
+    &__divider {
+        border: none;
+        border-top: 1px solid $border-default;
+        margin: $space-1 0;
+    }
+
+    &__total {
+        font-weight: $font-weight-bold;
+        font-size: $font-size-base;
+        color: $text-primary;
+    }
+
+    &__savings {
+        color: $color-success-700;
+        font-weight: $font-weight-semibold;
+    }
+}
+
+/* Action buttons */
+.promo-actions {
+    display: flex;
+    gap: $space-2;
+    flex-direction: column;
+
+    @include sm-up {
+        flex-direction: row-reverse;
+    }
+
+    .btn { flex: 1; }
+}

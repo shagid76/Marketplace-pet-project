@@ -1,0 +1,188 @@
+@use '../../styles/abstracts/mixins' as *;
+
+.profile {
+    @include container;
+    padding-block: $space-6 $space-12;
+    display: grid;
+    gap: $space-5;
+
+    @include md-up {
+        grid-template-columns: 280px minmax(0, 1fr);
+        align-items: start;
+        gap: $space-6;
+        padding-block: $space-10 $space-16;
+    }
+
+    @include lg-up { grid-template-columns: 320px minmax(0, 1fr); }
+
+    &__header {
+        @include card-base;
+        padding: $space-5 $space-4;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: $space-3;
+
+        @include md-up {
+            padding: $space-6;
+            position: sticky;
+            top: calc(#{$header-height-desktop} + #{$space-4});
+        }
+
+        img {
+            width: 96px;
+            height: 96px;
+            border-radius: $radius-full;
+            object-fit: cover;
+            border: 4px solid $bg-surface;
+            box-shadow: $shadow-md;
+            background: $color-neutral-100;
+            @include md-up { width: 120px; height: 120px; }
+        }
+
+        h1 {
+            font-size: $font-size-lg;
+            @include md-up { font-size: $font-size-xl; }
+        }
+
+        p { font-size: $font-size-sm; color: $text-secondary; }
+    }
+
+    &__rating {
+        display: inline-flex;
+        align-items: center;
+        gap: $space-2;
+        padding: $space-2 $space-4;
+        border-radius: $radius-full;
+        background: $color-warning-100;
+        color: $color-warning-700;
+        font-weight: $font-weight-semibold;
+        font-size: $font-size-sm;
+
+        &--empty { background: $color-neutral-100; color: $text-secondary; }
+    }
+
+    &__owner-actions {
+        display: grid;
+        gap: $space-2;
+        width: 100%;
+        margin-top: $space-2;
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        gap: $space-6;
+        @include md-up { gap: $space-8; }
+    }
+
+    &__section h3 {
+        margin-bottom: $space-3;
+        @include md-up { margin-bottom: $space-4; }
+    }
+}
+
+.profile-list { display: flex; flex-direction: column; gap: $space-2; }
+
+.profile-list-item {
+    @include card-base;
+    padding: $space-3 $space-4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $space-2;
+    flex-wrap: wrap;
+    transition: border-color $transition-fast, transform $transition-fast;
+
+    @include md-up { padding: $space-4 $space-5; gap: $space-3; }
+
+    @include hover { border-color: $color-brand-200; transform: translateX(2px); }
+
+    &__thumb {
+        width: 56px;
+        height: 56px;
+        border-radius: $radius-md;
+        object-fit: cover;
+        flex-shrink: 0;
+        border: 1px solid $border-default;
+        background: $color-neutral-100;
+
+        @include md-up { width: 64px; height: 64px; }
+    }
+
+    &__title {
+        flex: 1 1 60%;
+        min-width: 0;
+        @include clamp-lines(1);
+    }
+
+    a {
+        color: $text-primary;
+        font-weight: $font-weight-medium;
+        flex: 1 1 60%;
+        min-width: 0;
+        @include clamp-lines(1);
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+        gap: $space-3;
+        flex: 1 1 auto;
+        min-width: 0;
+        flex-wrap: wrap;
+
+        a { flex: 1 1 60%; }
+    }
+
+    &__price {
+        color: $color-brand-700;
+        font-weight: $font-weight-bold;
+        font-size: $font-size-sm;
+        white-space: nowrap;
+    }
+
+    &__sold {
+        color: $color-danger-600;
+        font-size: $font-size-xs;
+        font-weight: $font-weight-semibold;
+        margin-left: $space-2;
+    }
+
+    &__actions {
+        display: flex;
+        gap: $space-2;
+        flex-shrink: 0;
+    }
+
+    // ---- Banned wishlist item ----
+    &--banned {
+        border-color: $color-danger-500;
+        background: $color-danger-100;
+        transform: none !important;
+
+        &:hover { border-color: $color-danger-500; transform: none !important; }
+
+        a { color: $color-danger-700; }
+    }
+
+    &__banned-badge {
+        display: inline-block;
+        margin-left: $space-2;
+        padding: 1px $space-2;
+        border-radius: $radius-full;
+        background: $color-danger-500;
+        color: #fff;
+        font-size: $font-size-xs;
+        font-weight: $font-weight-semibold;
+        letter-spacing: $letter-spacing-wide;
+        text-transform: uppercase;
+        vertical-align: middle;
+    }
+
+    &__price--banned {
+        text-decoration: line-through;
+        color: $color-danger-600;
+    }
+}

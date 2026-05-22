@@ -1,0 +1,80 @@
+@use '../../styles/abstracts/mixins' as *;
+
+.banned-alert-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $space-4;
+    animation: banned-alert-in 0.18s ease;
+}
+
+.banned-alert {
+    background: $bg-surface;
+    border-radius: $radius-xl;
+    padding: $space-6 $space-6 $space-5;
+    max-width: 440px;
+    width: 100%;
+    box-shadow: $shadow-xl;
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+
+    &__icon {
+        font-size: 2.5rem;
+        line-height: 1;
+        text-align: center;
+    }
+
+    &__title {
+        font-size: $font-size-lg;
+        font-weight: $font-weight-bold;
+        color: $text-primary;
+        text-align: center;
+        line-height: $line-height-tight;
+    }
+
+    &__desc {
+        font-size: $font-size-sm;
+        color: $text-secondary;
+        text-align: center;
+        margin: 0;
+    }
+
+    &__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: $space-2;
+        max-height: 220px;
+        overflow-y: auto;
+        border: 1px solid $color-danger-500;
+        border-radius: $radius-md;
+        padding: $space-3;
+        background: $color-danger-100;
+    }
+
+    &__list-item {
+        display: flex;
+        align-items: center;
+        gap: $space-2;
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        color: $color-danger-700;
+    }
+
+    &__bullet {
+        font-size: $font-size-xs;
+        flex-shrink: 0;
+    }
+}
+
+@keyframes banned-alert-in {
+    from { opacity: 0; transform: scale(0.96); }
+    to   { opacity: 1; transform: scale(1); }
+}

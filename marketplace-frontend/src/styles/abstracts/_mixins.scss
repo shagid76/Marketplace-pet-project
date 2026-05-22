@@ -1,0 +1,106 @@
+@forward 'variables';
+@forward 'breakpoints';
+@use 'variables' as *;
+@use 'breakpoints' as *;
+
+@mixin container {
+    width: 100%;
+    max-width: $container-max;
+    margin-inline: auto;
+    padding-inline: $container-pad-mobile;
+
+    @include md-up {
+        padding-inline: $container-pad-tablet;
+    }
+    @include lg-up {
+        padding-inline: $container-pad-desktop;
+    }
+}
+
+@mixin focus-ring($color: $color-brand-500) {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($color, 0.35);
+}
+
+@mixin clamp-lines($lines: 2) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@mixin grid-auto-fill($min: 240px, $gap: $space-5) {
+    display: grid;
+    gap: $gap;
+    grid-template-columns: repeat(auto-fill, minmax($min, 1fr));
+}
+
+@mixin scrollbar-thin($thumb: $color-neutral-300, $track: transparent) {
+    scrollbar-width: thin;
+    scrollbar-color: $thumb $track;
+
+    &::-webkit-scrollbar { width: 8px; height: 8px; }
+    &::-webkit-scrollbar-track { background: $track; }
+    &::-webkit-scrollbar-thumb {
+        background: $thumb;
+        border-radius: $radius-full;
+    }
+    &::-webkit-scrollbar-thumb:hover { background: $color-neutral-400; }
+}
+
+@mixin card-base {
+    background: $bg-surface;
+    border: 1px solid $border-default;
+    border-radius: $radius-lg;
+    box-shadow: $shadow-sm;
+    transition: transform $transition-base, box-shadow $transition-base, border-color $transition-base;
+}
+
+@mixin card-interactive {
+    @include card-base;
+    cursor: pointer;
+
+    @include hover {
+        transform: translateY(-2px);
+        box-shadow: $shadow-lg;
+        border-color: $color-brand-200;
+    }
+    &:focus-visible {
+        @include focus-ring;
+    }
+}
+
+@mixin chip {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-1;
+    padding: $space-1 $space-3;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    line-height: 1;
+    border-radius: $radius-full;
+    background: $color-brand-50;
+    color: $color-brand-700;
+    border: 1px solid $color-brand-100;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wide;
+}
+
+@mixin glass {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: saturate(140%) blur(14px);
+}

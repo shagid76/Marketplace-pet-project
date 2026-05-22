@@ -1,0 +1,43 @@
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:0/test}
+      auto-index-creation: true
+    elasticsearch:
+      uris: ${ELASTICSEARCH_URI:http://localhost:9200}
+
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration
+      - org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchRepositoriesAutoConfiguration
+      - org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchRestClientAutoConfiguration
+
+jwt:
+  secret: fc6b7015f4c48b13e4780016c5d83f3229fe9b62f5fb5d913b86ae11640f9f88
+
+images:
+  s3Endpoint: http://localhost:9000
+  bucketName: marketplace-images
+  accessKey: test
+  secretKey: test
+  defaultAvatarPath: http://localhost:9000/marketplace-images/default-avatar.png
+
+stripe:
+  webhookSecret: whsec_test
+  apiKey: sk_test_dummy
+
+app:
+  frontend-origin: http://localhost:3000
+  security:
+    permit-all-urls:
+      - /api/auth/sign-in
+      - /api/auth/registration
+      - /api/auth/refresh
+      - /api/users/{id}
+      - /api/products/{id}
+      - /api/products/category/{category}
+      - /api/products/new-items
+      - /api/products/search
+      - /api/payments/webhook
+      - /ws/**
+      - /static/**

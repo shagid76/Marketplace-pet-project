@@ -1,0 +1,191 @@
+@use '../../styles/abstracts/mixins' as *;
+
+.admin-table {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+
+    &__header {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: $space-3;
+        flex-wrap: wrap;
+
+        h2 { font-size: $font-size-lg; font-weight: $font-weight-bold; }
+
+        small {
+            color: $text-muted;
+            font-size: $font-size-xs;
+            text-transform: uppercase;
+            letter-spacing: $letter-spacing-wide;
+        }
+    }
+
+    &__id {
+        font-family: $font-family-mono;
+        font-size: $font-size-xs;
+        color: $text-muted;
+        white-space: nowrap;
+    }
+
+    &__description {
+        max-width: 320px;
+        @include clamp-lines(2);
+        color: $text-secondary;
+        font-size: $font-size-sm;
+    }
+
+    &__price {
+        font-weight: $font-weight-bold;
+        color: $color-brand-700;
+        font-variant-numeric: tabular-nums;
+    }
+
+    &__actions {
+        display: flex;
+        gap: $space-2;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+}
+
+.admin-action {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+    align-items: flex-start;
+
+    &__row {
+        display: flex;
+        gap: $space-2;
+        flex-wrap: wrap;
+    }
+
+    &__note {
+        font-size: $font-size-xs;
+        color: $text-secondary;
+        font-style: italic;
+    }
+}
+
+/* ---- Promo Code admin panel extras ---- */
+.promo-admin-form {
+    margin-top: $space-4;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.promo-admin-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+
+    @include sm-up { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+}
+
+.promo-admin-cats-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $space-2;
+
+    label {
+        margin-bottom: 0;
+        font-weight: 500;
+        font-size: 0.875rem;
+        color: $text-secondary;
+    }
+}
+
+.promo-admin-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-2;
+    padding: $space-3 $space-4;
+    border: 1px solid $border-default;
+    border-radius: $radius-md;
+    background: $bg-surface;
+}
+
+.promo-admin-check {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    font-size: $font-size-sm;
+    cursor: pointer;
+    padding: $space-1 $space-3;
+    border-radius: $radius-full;
+    border: 1px solid $border-default;
+    transition: background $transition-fast, border-color $transition-fast;
+
+    input[type='checkbox'] { accent-color: $color-brand-600; cursor: pointer; }
+
+    &:has(input:checked) {
+        background: $color-brand-50;
+        border-color: $color-brand-300;
+        color: $color-brand-700;
+    }
+}
+
+.promo-admin-banner {
+    padding: $space-3 $space-4;
+    border-radius: $radius-md;
+    font-size: $font-size-sm;
+    margin-bottom: $space-4;
+
+    &--success {
+        background: $color-success-100;
+        border: 1px solid rgba($color-success-500, 0.35);
+        color: $color-success-700;
+    }
+    &--error {
+        background: $color-danger-100;
+        border: 1px solid rgba($color-danger-500, 0.4);
+        color: $color-danger-700;
+    }
+}
+
+.promo-admin-list {
+    margin-top: $space-6;
+
+    &__title {
+        font-size: $font-size-base;
+        font-weight: $font-weight-semibold;
+        margin-bottom: $space-3;
+    }
+}
+
+/* Never-expire button sits flush with the date inputs */
+.promo-admin-row--dates {
+    align-items: end;
+}
+
+.form-group--infinity {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn--infinity {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-wide;
+    color: $color-brand-600;
+    border: 1.5px dashed $color-brand-300;
+    border-radius: $radius-md;
+    padding: $space-3 $space-4;
+    background: $color-brand-50;
+    white-space: nowrap;
+    transition: background $transition-fast, border-color $transition-fast, color $transition-fast;
+
+    &:hover {
+        background: $color-brand-100;
+        border-color: $color-brand-400;
+        color: $color-brand-700;
+    }
+
+    &:active {
+        background: $color-brand-200;
+    }
+}

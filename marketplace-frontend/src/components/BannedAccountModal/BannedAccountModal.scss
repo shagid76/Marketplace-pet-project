@@ -1,0 +1,50 @@
+@use '../../styles/abstracts/mixins' as *;
+
+.banned-account-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $space-4;
+    animation: banned-account-in 0.2s ease;
+}
+
+.banned-account-modal {
+    background: $bg-surface;
+    border-radius: $radius-xl;
+    border-top: 4px solid $color-danger-500;
+    padding: $space-8 $space-6;
+    max-width: 420px;
+    width: 100%;
+    box-shadow: $shadow-xl;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-4;
+    text-align: center;
+
+    &__icon { font-size: 3rem; line-height: 1; }
+
+    &__title {
+        font-size: $font-size-xl;
+        font-weight: $font-weight-bold;
+        color: $color-danger-700;
+        line-height: $line-height-tight;
+    }
+
+    &__desc {
+        font-size: $font-size-sm;
+        color: $text-secondary;
+        line-height: $line-height-relaxed;
+        margin: 0;
+        max-width: 340px;
+    }
+}
+
+@keyframes banned-account-in {
+    from { opacity: 0; transform: scale(0.94); }
+    to   { opacity: 1; transform: scale(1); }
+}

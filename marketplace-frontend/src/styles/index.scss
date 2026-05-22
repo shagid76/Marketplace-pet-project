@@ -1,0 +1,9 @@
+// === Design system entry point ===
+// Order: abstracts → base → components → page/component overrides
+
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/global';
+@use 'components/buttons';
+@use 'components/forms';
+@use 'components/cards';

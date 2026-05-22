@@ -1,0 +1,20 @@
+$bp-xs: 380px;
+$bp-sm: 480px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+$bp-xl: 1280px;
+$bp-2xl: 1536px;
+
+@mixin xs-up { @media (min-width: $bp-xs) { @content; } }
+@mixin sm-up { @media (min-width: $bp-sm) { @content; } }
+@mixin md-up { @media (min-width: $bp-md) { @content; } }
+@mixin lg-up { @media (min-width: $bp-lg) { @content; } }
+@mixin xl-up { @media (min-width: $bp-xl) { @content; } }
+@mixin xxl-up { @media (min-width: $bp-2xl) { @content; } }
+@mixin xs-down { @media (max-width: ($bp-xs - 1)) { @content; } }
+@mixin sm-down { @media (max-width: ($bp-sm - 1)) { @content; } }
+@mixin md-down { @media (max-width: ($bp-md - 1)) { @content; } }
+@mixin lg-down { @media (max-width: ($bp-lg - 1)) { @content; } }
+@mixin reduce-motion { @media (prefers-reduced-motion: reduce) { @content; } }
+@mixin dark-mode { @media (prefers-color-scheme: dark) { @content; } }
+@mixin hover { @media (hover: hover) and (pointer: fine) { &:hover { @content; } } }

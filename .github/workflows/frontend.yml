@@ -1,0 +1,44 @@
+name: Frontend CI
+
+on:
+  push:
+    paths:
+      - "marketplace-frontend/**"
+      - ".github/workflows/frontend.yml"
+  pull_request:
+    paths:
+      - "marketplace-frontend/**"
+      - ".github/workflows/frontend.yml"
+
+defaults:
+  run:
+    working-directory: marketplace-frontend
+
+jobs:
+  ci:
+    name: Lint · Test · Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: marketplace-frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build (ESLint + TypeScript + bundle)
+        run: npm run build
+        env:
+          CI: true
+
+      - name: Unit tests
+        run: npm test -- --watchAll=false --coverage
+        env:
+          CI: true

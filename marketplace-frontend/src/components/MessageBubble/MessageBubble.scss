@@ -1,0 +1,70 @@
+@use '../../styles/abstracts/mixins' as *;
+
+.message {
+    max-width: 85%;
+    padding: $space-2 $space-3;
+    border-radius: $radius-lg;
+    background: $bg-surface;
+    border: 1px solid $border-default;
+    box-shadow: $shadow-xs;
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+    align-self: flex-start;
+    animation: msg-in 200ms ease-out;
+
+    @include md-up { max-width: 78%; }
+
+    &--mine {
+        align-self: flex-end;
+        background: $gradient-brand;
+        color: $color-neutral-0;
+        border-color: transparent;
+        box-shadow: $shadow-sm;
+
+        .message__sender { color: rgba(255, 255, 255, 0.85); }
+        .message__time   { color: rgba(255, 255, 255, 0.7); }
+        .message__delete { color: rgba(255, 255, 255, 0.85); }
+    }
+
+    &__sender {
+        font-size: $font-size-xs;
+        font-weight: $font-weight-semibold;
+        color: $color-brand-700;
+        text-transform: uppercase;
+        letter-spacing: $letter-spacing-wide;
+    }
+
+    &__body {
+        font-size: $font-size-sm;
+        line-height: $line-height-snug;
+        word-break: break-word;
+    }
+
+    &__meta {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: $space-3;
+        margin-top: $space-1;
+    }
+
+    &__time { font-size: 10px; color: $text-muted; }
+
+    &__delete {
+        font-size: 10px;
+        color: $color-danger-600;
+        background: none;
+        border: 0;
+        cursor: pointer;
+        text-decoration: underline;
+        opacity: 0.7;
+        transition: opacity $transition-fast;
+        &:hover { opacity: 1; }
+    }
+}
+
+@keyframes msg-in {
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
+}

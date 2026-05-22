@@ -1,0 +1,246 @@
+@use '../../styles/abstracts/mixins' as *;
+
+
+.cart {
+    @include container;
+    padding-block: $space-6 $space-12;
+    display: grid;
+    gap: $space-6;
+
+    @include lg-up {
+        grid-template-columns: minmax(0, 1fr) 360px;
+        align-items: start;
+    }
+
+    &__header h2 { margin-bottom: $space-2; }
+    &__list { display: flex; flex-direction: column; gap: $space-3; }
+
+    &__empty {
+        @include card-base;
+        padding: $space-10 $space-5;
+        text-align: center;
+        color: $text-secondary;
+        @include md-up { padding: $space-12 $space-6; }
+    }
+
+    &__summary {
+        @include card-base;
+        padding: $space-4 $space-5;
+        display: flex;
+        flex-direction: column;
+        gap: $space-3;
+
+        @include md-up { padding: $space-5; gap: $space-4; }
+
+        @include lg-up {
+            position: sticky;
+            top: calc(#{$header-height-desktop} + #{$space-4});
+        }
+
+        h3 {
+            font-size: $font-size-md;
+            text-transform: uppercase;
+            letter-spacing: $letter-spacing-wide;
+            color: $text-secondary;
+        }
+
+        &-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-size: $font-size-sm;
+            color: $text-secondary;
+            gap: $space-2;
+            flex-wrap: wrap;
+
+            strong {
+                color: $text-primary;
+                font-size: $font-size-lg;
+                font-weight: $font-weight-bold;
+            }
+        }
+    }
+}
+
+.cart-item {
+    @include card-base;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: $space-3;
+    padding: $space-3 $space-4;
+
+    @include md-up { gap: $space-4; padding: $space-4 $space-5; }
+
+    &__title {
+        font-weight: $font-weight-semibold;
+        color: $text-primary;
+        @include clamp-lines(2);
+        min-width: 0;
+    }
+
+    &__price {
+        color: $color-brand-700;
+        font-weight: $font-weight-bold;
+        margin-top: $space-1;
+    }
+}
+
+// ---- Promo code block inside order summary ----
+.cart__promo {
+    display: flex;
+    flex-direction: column;
+    gap: $space-2;
+    padding: $space-3 0;
+    border-top: 1px solid $border-default;
+    border-bottom: 1px solid $border-default;
+}
+
+.cart__promo-label {
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-wide;
+    color: $text-secondary;
+    margin: 0;
+}
+
+.cart__promo-row {
+    display: flex;
+    gap: $space-2;
+
+    .btn {
+        flex-shrink: 0;
+    }
+}
+
+.cart__promo-input {
+    flex: 1;
+    font-family: monospace;
+    font-size: $font-size-sm;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: $space-2 $space-3;
+    border: 1px solid $border-default;
+    border-radius: $radius-md;
+    background: $bg-surface;
+    color: $text-primary;
+    transition: border-color 0.15s;
+    min-width: 0;
+
+    &::placeholder {
+        color: $text-muted;
+        letter-spacing: 0.04em;
+        font-family: monospace;
+    }
+
+    &:focus {
+        outline: none;
+        border-color: $color-brand-500;
+        box-shadow: 0 0 0 3px rgba($color-brand-500, 0.15);
+    }
+}
+
+.cart__promo-applied {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-2;
+    padding: $space-2 $space-3;
+    background: rgba($color-success-500, 0.08);
+    border: 1px solid rgba($color-success-500, 0.3);
+    border-radius: $radius-md;
+}
+
+.cart__promo-badge {
+    font-size: $font-size-sm;
+    font-weight: $font-weight-semibold;
+    font-family: monospace;
+    color: $color-success-500;
+    letter-spacing: 0.04em;
+}
+
+.cart__promo-remove {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $text-muted;
+    font-size: $font-size-sm;
+    padding: 0 $space-1;
+    line-height: 1;
+    transition: color 0.15s;
+
+    &:hover {
+        color: $color-danger-500;
+    }
+}
+
+.cart__promo-error {
+    font-size: $font-size-xs;
+    color: $color-danger-500;
+    margin: 0;
+}
+
+.cart__promo-hint {
+    font-size: $font-size-xs;
+    color: $text-muted;
+    text-align: center;
+    margin: 0;
+}
+
+.cart__summary-divider {
+    height: 1px;
+    background: $border-default;
+    margin: 0;
+}
+
+.cart__summary-row--discount {
+    strong { color: $color-success-500; }
+}
+// ---- Banned cart item ----
+.cart-item--banned {
+    border-color: $color-danger-500;
+    background: $color-danger-100;
+
+    .cart-item__title { color: $color-danger-700; }
+}
+
+.cart-item__banned-badge {
+    display: inline-block;
+    margin-left: $space-2;
+    padding: 1px $space-2;
+    border-radius: $radius-full;
+    background: $color-danger-500;
+    color: #fff;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-semibold;
+    letter-spacing: $letter-spacing-wide;
+    text-transform: uppercase;
+    vertical-align: middle;
+}
+
+.cart-item__price--banned {
+    text-decoration: line-through;
+    color: $color-danger-500;
+}
+
+// ---- Banned warning in order summary ----
+.cart__banned-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: $space-2;
+    padding: $space-3 $space-3;
+    border-radius: $radius-md;
+    background: $color-danger-100;
+    border: 1px solid $color-danger-500;
+    color: $color-danger-700;
+    font-size: $font-size-xs;
+    font-weight: $font-weight-medium;
+    line-height: $line-height-base;
+
+    &::before {
+        content: "🚫";
+        flex-shrink: 0;
+        font-size: $font-size-sm;
+    }
+}

@@ -1,0 +1,80 @@
+@use '../../styles/abstracts/mixins' as *;
+
+.site-footer {
+    margin-top: auto;
+    background: $color-neutral-900;
+    color: $color-neutral-300;
+    padding-block: $space-8 $space-5;
+
+    @include md-up { padding-block: $space-10 $space-6; }
+
+    &__inner {
+        @include container;
+        display: flex;
+        flex-direction: column;
+        gap: $space-5;
+
+        @include md-up {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: $space-6;
+        }
+    }
+
+    &__brand {
+        display: flex;
+        flex-direction: column;
+        gap: $space-2;
+
+        h3 {
+            font-size: $font-size-lg;
+            background: $gradient-brand;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        p {
+            color: $color-neutral-400;
+            font-size: $font-size-sm;
+            max-width: 360px;
+        }
+    }
+
+    &__links {
+        display: flex;
+        gap: $space-5;
+        flex-wrap: wrap;
+
+        a {
+            color: $color-neutral-300;
+            font-size: $font-size-sm;
+            font-weight: $font-weight-medium;
+            transition: color $transition-fast;
+            display: inline-flex;
+            align-items: center;
+            gap: $space-2;
+
+            &:hover { color: $color-neutral-0; }
+
+            &::before {
+                content: '';
+                width: 6px;
+                height: 6px;
+                border-radius: $radius-full;
+                background: $color-brand-500;
+            }
+        }
+    }
+
+    &__copy {
+        font-size: $font-size-xs;
+        color: $color-neutral-500;
+        text-align: center;
+        padding-top: $space-5;
+        border-top: 1px solid $color-neutral-800;
+        margin-top: $space-4;
+        @include md-up { margin-top: 0; }
+    }
+}

@@ -1,0 +1,157 @@
+@use '../../styles/abstracts/mixins' as *;
+
+.chat-list {
+    padding: $space-4;
+
+    &__title {
+        font-size: $font-size-md;
+        font-weight: $font-weight-bold;
+        margin-bottom: $space-4;
+        text-transform: uppercase;
+        letter-spacing: $letter-spacing-wide;
+        color: $text-secondary;
+    }
+
+    &__empty {
+        padding: $space-6 $space-4;
+        color: $text-muted;
+        font-size: $font-size-sm;
+        text-align: center;
+    }
+}
+
+// ---- User search ----
+.chat-search {
+    position: relative;
+    margin-bottom: $space-4;
+
+    &__input {
+        width: 100%;
+        padding: $space-2 $space-3;
+        font-size: $font-size-sm;
+        color: $text-primary;
+        background: $bg-surface;
+        border: 1px solid $border-default;
+        border-radius: $radius-md;
+        transition: border-color $transition-fast, box-shadow $transition-fast;
+
+        &::placeholder { color: $text-muted; }
+
+        &:hover { border-color: $border-strong; }
+
+        &:focus {
+            outline: none;
+            border-color: $border-focus;
+            box-shadow: $shadow-glow;
+        }
+    }
+
+    &__dropdown {
+        position: absolute;
+        top: calc(100% + $space-1);
+        left: 0;
+        right: 0;
+        background: $bg-surface;
+        border: 1px solid $border-default;
+        border-radius: $radius-md;
+        box-shadow: $shadow-md;
+        z-index: 50;
+        overflow: hidden;
+    }
+
+    &__status {
+        padding: $space-3 $space-4;
+        font-size: $font-size-xs;
+        color: $text-muted;
+        text-align: center;
+
+        &--error { color: $color-danger-600; }
+    }
+
+    &__result {
+        display: flex;
+        align-items: center;
+        gap: $space-3;
+        width: 100%;
+        padding: $space-2 $space-3;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        transition: background $transition-fast;
+
+        &:hover { background: $color-brand-50; }
+    }
+
+    &__avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: $radius-full;
+        object-fit: cover;
+        flex-shrink: 0;
+        background: $color-neutral-200;
+
+        &--placeholder { background: $color-neutral-200; }
+    }
+
+    &__username {
+        font-size: $font-size-sm;
+        font-weight: $font-weight-medium;
+        color: $text-primary;
+        @include clamp-lines(1);
+    }
+}
+
+.chat-item {
+    width: 100%;
+    text-align: left;
+    padding: $space-3 $space-4;
+    border-radius: $radius-md;
+    background: transparent;
+    border: 1px solid transparent;
+    margin-bottom: $space-1;
+    cursor: pointer;
+    transition: background $transition-fast, border-color $transition-fast;
+
+    &:hover {
+        background: $bg-surface;
+        border-color: $border-default;
+    }
+
+    &--active {
+        background: $color-brand-50;
+        border-color: $color-brand-200;
+    }
+
+    &__title {
+        font-weight: $font-weight-semibold;
+        color: $text-primary;
+        font-size: $font-size-sm;
+        margin-bottom: $space-1;
+        @include clamp-lines(1);
+    }
+
+    &__preview {
+        font-size: $font-size-xs;
+        color: $text-secondary;
+        @include clamp-lines(1);
+    }
+
+    &__sender {
+        font-weight: $font-weight-semibold;
+        color: $text-primary;
+    }
+
+    &__text {
+        color: $text-secondary;
+    }
+
+    &__time {
+        color: $text-muted;
+    }
+
+    &__empty {
+        color: $text-muted;
+        font-style: italic;
+    }
+}
